@@ -42,40 +42,55 @@ const Home = () => {
   return (
     <Container sx={{ py: 4 }}>
       
-      <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
-        <Typography variant="h4" gutterBottom>
-        Products
-      </Typography>
+     <Box
+  display="flex"
+  flexDirection={{ xs: 'column', sm: 'row' }}
+  justifyContent="space-between"
+  alignItems={{ xs: 'flex-start', sm: 'center' }}
+  gap={2}
+  mb={4}
+>
+  <Typography variant="h4" gutterBottom>
+    Products
+  </Typography>
 
-      <Box display="flex" gap={2} alignItems="center" justifyContent={'end'} mb={4}>
-        <FormControl sx={{ minWidth: 200 }}>
-          <InputLabel id="category-label">Category</InputLabel>
-          <Select
-            labelId="category-label"
-            value={category}
-            label="Category"
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <MenuItem value="">All</MenuItem>
-            <MenuItem value="men">Fashion</MenuItem>
-            <MenuItem value="jewelery">Jewelery</MenuItem>
-            <MenuItem value="electronics">Electronics</MenuItem>
-          </Select>
-        </FormControl>
+  <Box
+    display="flex"
+    flexDirection={{ xs: 'column', sm: 'row' }}
+    alignItems={{ xs: 'stretch', sm: 'center' }}
+    justifyContent="flex-end"
+    gap={2}
+    width={{ xs: '100%', sm: 'auto' }}
+  >
+    <FormControl fullWidth sx={{ minWidth: 200 }}>
+      <InputLabel id="category-label">Category</InputLabel>
+      <Select
+        labelId="category-label"
+        value={category}
+        label="Category"
+        onChange={(e) => setCategory(e.target.value)}
+      >
+        <MenuItem value="">All</MenuItem>
+        <MenuItem value="men">Fashion</MenuItem>
+        <MenuItem value="jewelery">Jewelery</MenuItem>
+        <MenuItem value="electronics">Electronics</MenuItem>
+      </Select>
+    </FormControl>
 
-        
-        <CustomButton onClick={handleFilter}>
-          Filter
-</CustomButton>
- <CustomButton onClick={() => {
-    setCategory('');
-    dispatch(clearFilter());
-  }}>
-         Clear Filter
-</CustomButton>
-       
-      </Box>
-      </Box>
+    <CustomButton onClick={handleFilter}>Filter</CustomButton>
+
+    <CustomButton
+sx={{
+  whiteSpace:'nowrap'
+}}      onClick={() => {
+        setCategory('');
+        dispatch(clearFilter());
+      }}
+    >
+      Clear Filter
+    </CustomButton>
+  </Box>
+</Box>
 
       <Box display="flex" flexWrap="wrap" gap={3} maxWidth={1280} justifyContent={'center'} margin={'auto'}>
         {filteredProducts.map((product) => (

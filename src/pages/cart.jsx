@@ -11,6 +11,8 @@ import {
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 
+import CustomButton from '../shared-frontend/customButon';
+import { Link } from 'react-router-dom';
 import { removeFromCart } from '../redux/actions/productActions';
 
 const Cart = () => {
@@ -30,7 +32,15 @@ const Cart = () => {
       </Typography>
 
       {cart.length === 0 ? (
-        <Typography variant="body1">Your cart is empty.</Typography>
+       <Box display={'flex'} flexDirection={'column'} gap={'15px'} textAlign={'center'}>
+         <Typography variant="body1">Your cart is empty.
+        </Typography>
+        <Link style={{
+        
+        textDecoration:'none'}}to={'/'}>
+        Home
+        </Link>
+       </Box>
       ) : (
         <>
           {cart.map((item) => (
@@ -69,9 +79,9 @@ const Cart = () => {
 
           <Box textAlign="right" mt={2}>
             <Typography variant="h6">Total: ${total}</Typography>
-            <Button variant="contained" color="primary" sx={{ mt: 1 }}>
+            <CustomButton  sx={{ mt: 1 }}>
               Checkout
-            </Button>
+            </CustomButton>
           </Box>
         </>
       )}
