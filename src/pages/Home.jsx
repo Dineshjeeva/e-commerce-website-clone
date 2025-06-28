@@ -7,7 +7,7 @@ import {
   MenuItem,
   Select,
   Typography,
-   
+
   FormLabel,
   RadioGroup,
   FormControlLabel,
@@ -47,25 +47,25 @@ const Home = () => {
   };
 
   useEffect(() => {
-  handleFilter();
-}, [category]); 
+    handleFilter();
+  }, [category]);
 
   return (
     <Container maxWidth={1300} sx={{ py: 4 }}>
-      
-     <Box
-  display="flex"
-  flexDirection={{ xs: 'column', sm: 'row' }}
-  justifyContent="space-between"
-  alignItems={{ xs: 'flex-start', sm: 'center' }}
-  gap={2}
-  mb={4}
->
-  <Typography variant="h4" gutterBottom>
-    Products
-  </Typography>
 
-  {/* <Box
+      <Box
+        display="flex"
+        flexDirection={{ xs: 'column', sm: 'row' }}
+        justifyContent="space-between"
+        alignItems={{ xs: 'flex-start', sm: 'center' }}
+        gap={2}
+        mb={4}
+      >
+        <Typography variant="h4" gutterBottom>
+          Products
+        </Typography>
+
+        {/* <Box
     display="flex"
     flexDirection={{ xs: 'column', sm: 'row' }}
     alignItems={{ xs: 'stretch', sm: 'center' }}
@@ -101,59 +101,59 @@ sx={{
       Clear Filter
     </CustomButton>
   </Box> */}
-</Box>
-<Box display={'flex'} flexDirection={{xs:'column',sm:'column',md:'row'}}>
-  <Box>
-    <Box
-  display="flex"
-  flexDirection={{ xs: "column", sm: "row" }}
-  alignItems={{ xs: "stretch", sm: "center" }}
-  justifyContent="flex-end"
-  gap={2}
-  width={{ xs: "100%", sm: "auto" }}
->
-  <FormControl component="fieldset" sx={{ minWidth: 200 }}>
-  <Box display={'flex'} justifyContent={'space-between'}>
-      <FormLabel component="legend">Category</FormLabel>
-     <Typography
-    sx={{ whiteSpace: "nowrap" ,cursor:'pointer',color:colors.cardBG}}
-    onClick={() => {
-      setCategory("");
-      dispatch(clearFilter());
-    }}
-  >
-    Clear Filter
-  </Typography>
-  </Box>
-   <RadioGroup
-  
-  value={category}
-  onChange={(e) => {
-    const selectedCategory = e.target.value;
-    setCategory(selectedCategory);
-    handleFilter(selectedCategory); // Auto apply filter on select
-  }}
->
-  <FormControlLabel value="" control={<Radio />} label="All" />
-  <FormControlLabel value="men" control={<Radio />} label="Fashion" />
-  <FormControlLabel value="jewelery" control={<Radio />} label="Jewelery" />
-  <FormControlLabel value="electronics" control={<Radio />} label="Electronics" />
-</RadioGroup>
-  </FormControl>
-
-
- 
-</Box>
-  </Box>
-    <Box display="flex" flexWrap="wrap" gap={3} maxWidth={1280} justifyContent={'center'} margin={'auto'}>
-        {filteredProducts.map((product) => (
-          <ProductCard product={product} key={product.id} />
-        ))}
       </Box>
-</Box>
+      <Box display={'flex'} flexDirection={{ xs: 'column', sm: 'column', md: 'row' }}>
+        <Box>
+          <Box
+            display="flex"
+            flexDirection={{ xs: "column", sm: "row" }}
+            alignItems={{ xs: "stretch", sm: "center" }}
+            justifyContent="flex-end"
+            gap={2}
+            width={{ xs: "100%", sm: "auto" }}
+          >
+            <FormControl component="fieldset" sx={{ minWidth: 200 }}>
+              <Box display={'flex'} justifyContent={'space-between'}>
+                <FormLabel component="legend">Category</FormLabel>
+                <Typography
+                  sx={{ whiteSpace: "nowrap", cursor: 'pointer', color: colors.cardBG }}
+                  onClick={() => {
+                    setCategory("");
+                    dispatch(clearFilter());
+                  }}
+                >
+                  Clear Filter
+                </Typography>
+              </Box>
+              <RadioGroup
+
+                value={category}
+                onChange={(e) => {
+                  const selectedCategory = e.target.value;
+                  setCategory(selectedCategory);
+                  handleFilter(selectedCategory); // Auto apply filter on select
+                }}
+              >
+                <FormControlLabel value="" control={<Radio />} label="All" />
+                <FormControlLabel value="men" control={<Radio />} label="Fashion" />
+                <FormControlLabel value="jewelery" control={<Radio />} label="Jewelery" />
+                <FormControlLabel value="electronics" control={<Radio />} label="Electronics" />
+              </RadioGroup>
+            </FormControl>
 
 
-    
+
+          </Box>
+        </Box>
+        <Box display="flex" flexWrap="wrap" gap={3} maxWidth={1280} justifyContent={'center'} margin={'auto'}>
+          {filteredProducts.map((product) => (
+            <ProductCard product={product} key={product.id} />
+          ))}
+        </Box>
+      </Box>
+
+
+
     </Container>
   );
 };

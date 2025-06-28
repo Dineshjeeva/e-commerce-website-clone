@@ -18,7 +18,7 @@ import { toast, ToastContainer } from 'react-toastify';
 
 const ProductCard = ({ product }) => {
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleNavigateProductDetail = () => {
@@ -26,21 +26,21 @@ const ProductCard = ({ product }) => {
   }
 
   const handleAddtoCart = (product) => {
-  toast.success('Product added to cart', {
-    autoClose: 2000,
-    onClose: () => {
-      console.log('Toast closed'); // 👉 this runs when user clicks ✖ or timeout
-    },
-  });
+    toast.success('Product added to cart', {
+      autoClose: 2000,
+      onClose: () => {
+        console.log('Toast closed'); // 👉 this runs when user clicks ✖ or timeout
+      },
+    });
 
-  dispatch(addToCart(product));
-};
+    dispatch(addToCart(product));
+  };
   return (
-   
-      <><Card
+
+    <><Card
       sx={{
         maxWidth: { xs: 'auto', sm: 'auto', md: 300 },
-        width:'100%',
+        width: '100%',
         height: 400, // ✅ Set fixed height
         borderRadius: 3,
         boxShadow: 3,
@@ -84,25 +84,25 @@ const ProductCard = ({ product }) => {
               : product.title}
           </Typography> </Link>
 
-          <Box display={'flex'} justifyContent={'space-between'}>
+        <Box display={'flex'} justifyContent={'space-between'}>
 
-            <Box margin={'1rem 0'}>
-            <Rating  size='small'  value={product.rating.rate} />
-
-</Box>
-            <Box display="flex" justifyContent="center" alignItems="center" gap={1} mb={1}>
-          <Typography color={colors.white}>${product.price}</Typography>
-          <Typography
-            variant="body2"
-            color={colors.white} sx={{ textDecoration: 'line-through' }}
-          >
-            ${(product.price * 2).toFixed(2)}
-          </Typography>
-        </Box>
+          <Box margin={'1rem 0'}>
+            <Rating size='small' value={product.rating.rate} />
 
           </Box>
+          <Box display="flex" justifyContent="center" alignItems="center" gap={1} mb={1}>
+            <Typography color={colors.white}>${product.price}</Typography>
+            <Typography
+              variant="body2"
+              color={colors.white} sx={{ textDecoration: 'line-through' }}
+            >
+              ${(product.price * 2).toFixed(2)}
+            </Typography>
+          </Box>
 
-        
+        </Box>
+
+
 
         <Typography
           variant="body2"
@@ -129,7 +129,7 @@ const ProductCard = ({ product }) => {
         </Box>
       </CardContent>
     </Card>
- </>
+    </>
 
   );
 };
