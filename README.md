@@ -1,16 +1,13 @@
+E-commce Web 
+
 Getting Started
 
 First, run the development server:
 
 1. Install dependencies
 
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm start
+
 
 Libraries Used
 
