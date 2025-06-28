@@ -36,6 +36,7 @@ const Cart = () => {
          <Typography variant="body1">Your cart is empty.
         </Typography>
         <Link style={{
+          cursor:'pointer',
         
         textDecoration:'none'}}to={'/'}>
         Home
