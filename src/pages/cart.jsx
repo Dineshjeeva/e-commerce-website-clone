@@ -74,7 +74,7 @@ const Cart = () => {
               }}
                 variant="outlined"
                 color="error"
-                onClick={() => handleRemove(index)}
+                onClick={() => handleRemove(item.id)}
               >
                 Remove
               </Button>
