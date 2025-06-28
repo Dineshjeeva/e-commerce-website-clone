@@ -8,6 +8,7 @@ import {
   Divider,
   Grid,
   Link,
+  Rating,
   Typography,
   useMediaQuery,
   useTheme
@@ -25,6 +26,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import colors from '../constant/colors';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const ProductDetail = () => {
   const theme = useTheme();
@@ -51,6 +53,17 @@ const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     (product) =>
       product.category === productDetail.category && product.id !== productDetail.id
   );
+
+    const handleAddtoCart = (product) => {
+    toast.success('Product added to cart', {
+      autoClose: 2000,
+      onClose: () => {
+        console.log('Toast closed'); // 👉 this runs when user clicks ✖ or timeout
+      },
+    });
+  
+    dispatch(addToCart(product));
+  };
 
   return (
     <Container sx={{ py: 4 }}>
@@ -80,13 +93,14 @@ const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
           component="img"
           image={productDetail.image}
           alt={productDetail.title}
-          sx={{ width: 300, objectFit: 'contain', borderRadius: 2 }}
+          sx={{ maxWidth: 300, objectFit: 'contain', borderRadius: 2 }}
         />
 
         <Box flex={1}>
-          <Typography textAlign={'center'} fontSize={'32px'} color={colors.cardBG} gutterBottom>
+          <Typography textAlign={'center'} fontSize={{xs:'18px',sm:'18px',md:'32px'}} color={colors.cardBG} gutterBottom>
             {productDetail.title}
           </Typography>
+         
 
         
           <Box
@@ -104,6 +118,10 @@ const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
       ₹{productDetail.price}
     </Typography>
   </Box>
+   <Box>
+                        <Rating  size='small'  value={productDetail.rating.rate} />
+
+          </Box>
 
   {/* Description Line */}
   <Box display="flex" flexWrap="wrap">
@@ -118,7 +136,7 @@ const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   {/* Add to Cart Button */}
   <CustomButton
     sx={{ width: 'fit-content', mt: 2 }}
-    onClick={() => dispatch(addToCart(productDetail))}
+    onClick={() => handleAddtoCart(productDetail)}
   >
     Add to Cart
   </CustomButton>
@@ -130,7 +148,7 @@ const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
       <Divider sx={{
         width:'100%',
-        maxWidth:1200,
+        maxWidth:1300,
         height:'2px',
         background:'black'
       }} />
@@ -142,10 +160,10 @@ const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
             Related Products
           </Typography>
 
-          <Grid container spacing={3}>
-            {relatedProducts.map((product) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
-                <ProductCard product={product} />
+          <Grid container spacing={2} justifyContent={'center'}>
+            {relatedProducts.slice(0,4).map((product) => (
+              <Grid item xs={12} sm={6} md={3} lg={3} key={product.id} >
+                <ProductCard  product={product} />
               </Grid>
             ))}
           </Grid>

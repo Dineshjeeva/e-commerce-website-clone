@@ -5,6 +5,7 @@ import Footer from "./components/appFooter";
 import Header from "./components/appHeader";
 import Home from "./pages/Home";
 import ProductDetail from "./pages/productDetail";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -16,6 +17,16 @@ function App() {
         <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="colored"
+      />
     </BrowserRouter>
   );
 }
