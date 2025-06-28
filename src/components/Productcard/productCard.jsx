@@ -7,6 +7,7 @@ import {
   Typography,
 } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 import CustomButton from '../../shared-frontend/customButon';
 import {
@@ -14,7 +15,6 @@ import {
 } from '../../redux/actions/productActions';
 import colors from '../../constant/colors';
 import { useDispatch } from 'react-redux';
-import { toast, ToastContainer } from 'react-toastify';
 
 const ProductCard = ({ product }) => {
 
@@ -37,9 +37,9 @@ const ProductCard = ({ product }) => {
   };
   return (
 
-    <><Card
+    <Card
       sx={{
-        maxWidth: { xs: 'auto', sm: 'auto', md: 300 },
+        maxWidth: { xs: 'auto', sm: 300, md: 300 },
         width: '100%',
         height: 400, // ✅ Set fixed height
         borderRadius: 3,
@@ -129,7 +129,7 @@ const ProductCard = ({ product }) => {
         </Box>
       </CardContent>
     </Card>
-    </>
+  
 
   );
 };

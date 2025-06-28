@@ -1,41 +1,38 @@
 import {
   Box,
-  Button,
   Container,
   FormControl,
   FormControlLabel,
   FormLabel,
-  InputLabel,
-  MenuItem,
+  Grid,
   Radio,
   RadioGroup,
-  Select,
   Typography,
-} from '@mui/material';
+} from "@mui/material";
 import {
   clearFilter,
   fetchProducts,
   setFilteredProducts,
-} from '../redux/actions/productActions';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+} from "../redux/actions/productActions";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
-import CustomButton from "../shared-frontend/customButon"
-import ProductCard from '../components/Productcard/productCard';
-import { ToastContainer } from 'react-toastify';
-import colors from '../constant/colors';
+import ProductCard from "../components/Productcard/productCard";
+import colors from "../constant/colors";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { productList, filteredProducts } = useSelector((state) => state.products);
-  const [category, setCategory] = useState('');
+  const { productList, filteredProducts } = useSelector(
+    (state) => state.products
+  );
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
   const handleFilter = () => {
-    if (category === '') {
+    if (category === "") {
       dispatch(clearFilter());
     } else {
       const filtered = productList.filter((p) =>
@@ -51,21 +48,25 @@ const Home = () => {
 
   return (
     <Container maxWidth={1300} sx={{ py: 4 }}>
-
       <Box
         display="flex"
-        flexDirection={{ xs: 'column', sm: 'row' }}
+        flexDirection={{ xs: "column", sm: "row" }}
         justifyContent="space-between"
-        alignItems={{ xs: 'flex-start', sm: 'center' }}
+        alignItems={{ xs: "flex-start", sm: "center" }}
         gap={2}
         mb={4}
       >
-        <Typography maxWidth={1200} margin={'auto'} variant="h4" gutterBottom>
+        <Typography maxWidth={1200} margin={"auto"} variant="h4" gutterBottom>
           Products
         </Typography>
       </Box>
-      <Box display={'flex'} flexDirection={{ xs: 'column', sm: 'column', md: 'row' }}>
-        <Box maxWidth={400} width={'100%'}>
+      <Box
+        maxWidth={1300}
+        margin={"auto"}
+        display={"flex"}
+        flexDirection={{ xs: "column", sm: "row", md: "row" }}
+      >
+        <Box>
           <Box
             display="flex"
             flexDirection={{ xs: "column", sm: "row" }}
@@ -75,10 +76,14 @@ const Home = () => {
             width={{ xs: "100%", sm: "auto" }}
           >
             <FormControl component="fieldset" sx={{ minWidth: 200 }}>
-              <Box display={'flex'} justifyContent={'space-between'}>
+              <Box display={"flex"} justifyContent={"space-between"}>
                 <FormLabel component="legend">Category</FormLabel>
                 <Typography
-                  sx={{ whiteSpace: "nowrap", cursor: 'pointer', color: colors.cardBG }}
+                  sx={{
+                    whiteSpace: "nowrap",
+                    cursor: "pointer",
+                    color: colors.cardBG,
+                  }}
                   onClick={() => {
                     setCategory("");
                     dispatch(clearFilter());
@@ -88,7 +93,6 @@ const Home = () => {
                 </Typography>
               </Box>
               <RadioGroup
-
                 value={category}
                 onChange={(e) => {
                   const selectedCategory = e.target.value;
@@ -97,25 +101,46 @@ const Home = () => {
                 }}
               >
                 <FormControlLabel value="" control={<Radio />} label="All" />
-                <FormControlLabel value="men" control={<Radio />} label="Fashion" />
-                <FormControlLabel value="jewelery" control={<Radio />} label="Jewelery" />
-                <FormControlLabel value="electronics" control={<Radio />} label="Electronics" />
+                <FormControlLabel
+                  value="men"
+                  control={<Radio />}
+                  label="Fashion"
+                />
+                <FormControlLabel
+                  value="jewelery"
+                  control={<Radio />}
+                  label="Jewelery"
+                />
+                <FormControlLabel
+                  value="electronics"
+                  control={<Radio />}
+                  label="Electronics"
+                />
               </RadioGroup>
             </FormControl>
-
-
-
           </Box>
         </Box>
-        <Box display="flex" flexWrap="wrap" gap={3} maxWidth={1280} justifyContent={'center'} margin={'2rem auto'}>
-          {filteredProducts.map((product) => (
-            <ProductCard product={product} key={product.id} />
-          ))}
-        </Box>
+        <Box
+  maxWidth={1280}
+  margin="2rem auto"
+  px={2}
+>
+  <Grid container spacing={3} justifyContent="space-between">
+    {filteredProducts.map((product) => (
+      <Grid
+       item
+        key={product.id}
+        xs={12}    // 📱 1 card on mobile
+        sm={6}     // 🧾 2 cards on tablets
+        md={4}
+        lg={4}  
+      >
+        <ProductCard product={product} />
+      </Grid>
+    ))}
+  </Grid>
+</Box>
       </Box>
-
-
-
     </Container>
   );
 };
