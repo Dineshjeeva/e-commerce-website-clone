@@ -3,15 +3,14 @@ import {
   Button,
   Container,
   FormControl,
+  FormControlLabel,
+  FormLabel,
   InputLabel,
   MenuItem,
+  Radio,
+  RadioGroup,
   Select,
   Typography,
-
-  FormLabel,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
 } from '@mui/material';
 import {
   clearFilter,
@@ -23,8 +22,8 @@ import { useEffect, useState } from 'react';
 
 import CustomButton from "../shared-frontend/customButon"
 import ProductCard from '../components/Productcard/productCard';
-import colors from '../constant/colors';
 import { ToastContainer } from 'react-toastify';
+import colors from '../constant/colors';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -61,7 +60,7 @@ const Home = () => {
         gap={2}
         mb={4}
       >
-        <Typography variant="h4" gutterBottom>
+        <Typography maxWidth={1200} margin={'auto'} variant="h4" gutterBottom>
           Products
         </Typography>
 
@@ -103,7 +102,7 @@ sx={{
   </Box> */}
       </Box>
       <Box display={'flex'} flexDirection={{ xs: 'column', sm: 'column', md: 'row' }}>
-        <Box>
+        <Box maxWidth={400} width={'100%'}>
           <Box
             display="flex"
             flexDirection={{ xs: "column", sm: "row" }}

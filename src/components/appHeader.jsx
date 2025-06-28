@@ -1,14 +1,14 @@
+import { Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Box } from '@mui/material';
 
 const Header = () => {
   const cart = useSelector((state) => state.products.cart);
 
   return (
     <header style={{ background: 'white' }}>
-      <div style={{ padding: '1rem', display: 'flex', justifyContent: 'space-between',alignContent:'center', maxWidth: '1300px', margin: 'auto' }}>
-        <Box display={'flex'} gap={'10px'} alignItems={'center'} alignSelf={'center'}>
+      <div style={{ padding: '1rem', display: 'flex', justifyContent: 'space-between',alignItems:'center', maxWidth: '1300px', margin: 'auto' }}>
+        <Box display={'flex'} gap={'10px'} alignItems={'center'} >
           <Link style={{
           fontSize: '35px',
           textDecoration: 'none',
