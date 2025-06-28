@@ -43,7 +43,7 @@ const Cart = () => {
        </Box>
       ) : (
         <>
-          {cart.map((item) => (
+          {cart.map((item,index) => (
             <Card
               key={item.id}
               sx={{
@@ -68,9 +68,13 @@ const Cart = () => {
               </Box>
 
               <Button
+              style={{
+                textTransform:'none',
+                fontSize:'16px'
+              }}
                 variant="outlined"
                 color="error"
-                onClick={() => handleRemove(item.id)}
+                onClick={() => handleRemove(index)}
               >
                 Remove
               </Button>

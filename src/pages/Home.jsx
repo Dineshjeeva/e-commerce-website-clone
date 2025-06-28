@@ -145,7 +145,7 @@ sx={{
 
           </Box>
         </Box>
-        <Box display="flex" flexWrap="wrap" gap={3} maxWidth={1280} justifyContent={'center'} margin={'auto'}>
+        <Box display="flex" flexWrap="wrap" gap={3} maxWidth={1280} justifyContent={'center'} margin={'2rem auto'}>
           {filteredProducts.map((product) => (
             <ProductCard product={product} key={product.id} />
           ))}
